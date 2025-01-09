@@ -1,5 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const { default: newloginActions } = require('./spec/actions/newLoginActions');
 
 test('assertion and locator', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
@@ -45,4 +46,18 @@ test('assertion and locator', async ({ page }) => {
     const buttonBackHome = page.locator('#back-to-products');
     await buttonBackHome.click();
 
-}); 
+})
+
+test('cara pmo', async ({ page }) => {
+    const objTest = new newloginActions(page);
+    await objTest.goto();
+    await objTest.InputLogin();
+    await objTest.addItem();
+    await objTest.cart();
+    await objTest.checkout();
+    await objTest.inputUser();
+    await objTest.continue();
+    await objTest.Finish();
+    await objTest.BackHome();
+
+})
